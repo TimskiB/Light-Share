@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "C:\Users\timsk\AppData\Roaming\Python\Python38\site-packages\urllib3\connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\timsk\AppData\Roaming\Python\Python38\site-packages\urllib3\connectionpool.py", line 381, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\timsk\AppData\Roaming\Python\Python38\site-packages\urllib3\connectionpool.py", line 978, in _validate_conn
+    conn.connect()
+  File "C:\Users\timsk\AppData\Roaming\Python\Python38\site-packages\urllib3\connection.py", line 362, in connect
+    self.sock = ssl_wrap_socket(
+  File "C:\Users\timsk\AppData\Roaming\Python\Python38\site-packages\urllib3\util\ssl_.py", line 397, in ssl_wrap_socket
+    return context.wrap_socket(sock)
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get issuer certificate (_ssl.c:1108)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\requests\adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "C:\Users\timsk\AppData\Roaming\Python\Python38\site-packages\urllib3\connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+  File "C:\Users\timsk\AppData\Roaming\Python\Python38\site-packages\urllib3\util\retry.py", line 439, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='172.105.64.85', port=80): Max retries exceeded with url: /user/signin (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get issuer certificate (_ssl.c:1108)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/timsk/Documents/Code/Python/LightShareUser/LightShare/main.py", line 34, in <module>
+    LightShare().run()
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\kivy\app.py", line 950, in run
+    runTouchApp()
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\kivy\base.py", line 582, in runTouchApp
+    EventLoop.mainloop()
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\kivy\base.py", line 347, in mainloop
+    self.idle()
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\kivy\base.py", line 387, in idle
+    Clock.tick()
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\kivy\clock.py", line 733, in tick
+    self.post_idle(ts, self.idle())
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\kivy\clock.py", line 776, in post_idle
+    self._process_events()
+  File "kivy\_clock.pyx", line 616, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 649, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 645, in kivy._clock.CyClockBase._process_events
+  File "kivy\_clock.pyx", line 218, in kivy._clock.ClockEvent.tick
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\kivy\clock.py", line 1095, in callback_func
+    func(*args, **kwargs)
+  File "C:\Users\timsk\Documents\Code\Python\LightShareUser\LightShare\libs\uix\baseclass\login_screen.py", line 68, in email_login
+    if server_response := self.auth.email_sign_in(
+  File "C:\Users\timsk\Documents\Code\Python\LightShareUser\LightShare\libs\backend\auth.py", line 75, in email_sign_in
+    return self.post_json(f"{self.api_endpoint}/user/signin",
+  File "C:\Users\timsk\Documents\Code\Python\LightShareUser\LightShare\libs\backend\auth.py", line 91, in post_json
+    response = requests.post(url, json=json, verify=path)  #TODO: verify=False
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\requests\api.py", line 117, in post
+    return request('post', url, data=data, json=json, **kwargs)
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\requests\api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\requests\sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\requests\sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\timsk\AppData\Local\Programs\Python\Python38\lib\site-packages\requests\adapters.py", line 514, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='172.105.64.85', port=80): Max retries exceeded with url: /user/signin (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get issuer certificate (_ssl.c:1108)')))

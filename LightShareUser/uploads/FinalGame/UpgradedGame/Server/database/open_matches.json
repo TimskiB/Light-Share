@@ -1,0 +1,41 @@
+{
+    "318": {
+        "players": 2,
+        "spectators": 0,
+        "users": [
+            "941",
+            "132"
+        ]
+    },
+    "331": {
+        "players": 2,
+        "spectators": 0,
+        "users": {}
+    },
+    "569": {
+        "players": 2,
+        "spectators": 0,
+        "users": {}
+    },
+    "639": {
+        "players": 2,
+        "spectators": 0,
+        "users": [
+            "132",
+            "941"
+        ]
+    },
+    "660": {
+        "players": 2,
+        "spectators": 0,
+        "users": [
+            "721",
+            "941"
+        ]
+    },
+    "970": {
+        "players": 2,
+        "spectators": 0,
+        "users": {}
+    }
+}

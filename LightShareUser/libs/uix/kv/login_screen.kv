@@ -1,0 +1,176 @@
+#: import HoverButton libs.uix.components.hover_button.HoverButton
+#: import GoogleImage libs.uix.baseclass.login_screen.GoogleImage
+
+<Notification@BoxLayout>
+    padding: dp(10)
+
+    MDLabel:
+        text: "Missing Login Info?"
+        theme_text_color: "Secondary"
+        halign: "left"
+
+    MDIconButton:
+        id: button
+        icon: "close"
+        halign: "right"
+        valign: "center"
+
+<ErrorDialog@BoxLayout>:
+    orientation: "vertical"
+    spacing: dp(10)
+    padding: dp(20)
+
+    MDLabel:
+        text: "Log in Failed"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: .9, 0, 0, 1
+
+    MDLabel:
+        text: "Make sure you entered the correct information and try again."
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: .9, 0, 0, 1
+        font_style: "Caption"
+
+    MDFillRoundFlatButton:
+        id: button
+        text: "Dismiss"
+        md_bg_color: .9, 0, 0, 1
+        pos_hint: {"center_x": .5}
+
+<LoginScreen>
+
+#    MDBoxLayout:
+#        orientation: "vertical"
+#
+#        MDToolbar:
+#            title: "Sign In Page"
+#            right_action_items: [["dots-vertical", lambda x: x]]
+#
+#        Widget:
+#
+#        FloatLayout:
+#            MDRaisedButton:
+#                text: "Go Home"
+#                pos_hint: {"center_x": .5, "center_y": .5}
+#                on_release: root.home_page()
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        Image:
+            source: "./assets/images/login.png"
+            pos_hint: {"y": .5}
+            size_hint: 1, .5
+        MDLabel:
+            text: "Log In"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            halign: "center"
+            font_name: "DecaM"
+            font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: 60/255, 43/255, 117/255, 1
+        MDFloatLayout:
+            size_hint: .85, .08
+            pos_hint: {"center_x": .5, "center_y": .38}
+            canvas:
+                Color:
+                    rgb: (238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                hint_text: "Email"
+                id: email
+                size_hint: 1, None
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: self.minimum_height
+                multiline: False
+                cursor_color: 96/255, 74/255, 215/255, 1
+                cursor_width: "2sp"
+                foreground_color: 96/255, 74/255, 215/255, 1
+                background_color: 0, 0, 0, 0
+                padding: 15
+                font_name: "DecaM"
+                font_size: "18sp"
+        MDFloatLayout:
+            size_hint: .85, .08
+            pos_hint: {"center_x": .5, "center_y": .28}
+            canvas:
+                Color:
+                    rgb: (238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                hint_text: "Password"
+                password: True
+                id: password
+                size_hint: 1, None
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: self.minimum_height
+                multiline: False
+                cursor_color: 96/255, 74/255, 215/255, 1
+                cursor_width: "2sp"
+                foreground_color: 96/255, 74/255, 215/255, 1
+                background_color: 0, 0, 0, 0
+                padding: 15
+                font_name: "DecaM"
+                font_size: "18sp"
+        MDTextButton:
+            text: "Forgot your password?"
+            font_name: "DecaM"
+            theme_text_color: "Custom"
+            text_color: 246/255, 135/255, 177/255, 1
+            pos_hint: {"center_x": .5, "center_y": .21}
+#        Button:
+#            text: "LOGIN"
+#            font_name: "DecaM"
+#            font_size: "20sp"
+#            ripple: True
+#            size_hint: .5, .08
+#            pos_hint: {"center_x": .5, "center_y": .12}
+#            background_color: 0, 0, 0, 0
+#            canvas.before:
+#                Color:
+#                    rgb: 246/255, 135/255, 177/255, 1
+#                RoundedRectangle:
+#                    size: self.size
+#                    pos: self.pos
+#                    radius: [23]
+
+
+        HoverButton:
+            text: "LOGIN"
+            font_name: "DecaM"
+            font_size: "20sp"
+            size_hint: .5, .09
+            pos_hint: {"center_x": .5, "center_y": .12}
+            background_color: 1, 1, 1, 0
+            color: 1, 1, 1, 1
+            on_release:
+                root.email_login()
+            canvas.before:
+                Color:
+                    rgb: self.background
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [8]
+
+        GoogleImage:
+            source: "./assets/images/icons/google.png"
+            pos_hint: {"center_x": .9, "center_y": .12}
+            size_hint: .08, .08
+            #on_release: root.google_login()
+
+        MDTextButton:
+            text: "Don't have an account? Sign up here"
+            font_name: "DecaL"
+            theme_text_color: "Custom"
+            on_release: root.manager.transition.direction='left'; root.manager.current = "register"
+            ripple: True
+            color: 17/255, 17/255, 17/255, 0.4
+            pos_hint: {"center_x": .5, "center_y": .03}

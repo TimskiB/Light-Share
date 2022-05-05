@@ -1,0 +1,126 @@
+#: import SearchBar libs.uix.components.search_bar.SearchBar
+<FilesScreen>:
+
+    name: "files"
+    id: files_screen
+    on_enter: root.start_title_change()
+    MDFloatLayout:
+        md_bg_color: rgba(246, 250, 255, 255)
+#        MDLabel:
+#            id: files_title1
+#            text: "[color=#BCCAE4]Light[/color] Drive"
+#            markup: True
+#            font_name: "DecaB"
+#            halign: "center"
+#            pos_hint: {"center_x": .5, "center_y": .9}
+#            font_size: '36sp'
+#            opacity: 0
+#        MDLabel:
+#            id: files_title2
+#            text: "Fast & Secure"
+#            markup: True
+#            font_name: "DecaB"
+#            halign: "center"
+#            pos_hint: {"center_x": .5, "center_y": .9}
+#            font_size: '36sp'
+#            opacity: 0
+        MDLabel
+            id: files_title1
+            text: "[color=#BCCAE4]Light[/color]"
+            markup: True
+            font_name: "DecaB"
+            halign: "center"
+            pos_hint: {"center_x": .43, "center_y": .9}
+            font_size: '38sp'
+            opacity: 0
+        MDLabel:
+#            id: files_title2
+            text: "Drive"
+            markup: True
+            font_name: "DecaB"
+            halign: "center"
+            pos_hint: {"center_x": .57, "center_y": .9}
+            font_size: '38sp'
+            opacity: 1
+        SearchBar:
+            size_hint: .85, .09
+            pos_hint: {"center_x": .5, "center_y": .75}
+            elevation: 10
+            md_bg_color: 1, 1, 1, 1
+            radius: [15]
+            Image:
+                source: "./assets/images/search.png"
+                pos_hint: {"center_x": .05, "center_y": .48}
+                size_hint: .65, .65
+            TextInput:
+                hint_text: "File, Folder, Type..."
+                size_hint: .78, None
+                pos_hint: {"center_x": .50, "center_y": .5}
+                height: self.minimum_height
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                multiline: False
+                background_color: 0, 0, 0, 0
+                padding: 15
+                font_name: "DecaM"
+                font_size: "18sp"
+                hint_text_color: rgba(195, 208, 231, 255)
+
+        MDCard:
+            size_hint: .65, .15
+            pos_hint: {"center_x": .5, "center_y": .58}
+            elevation: 15
+            # on_release: root.start_title_change()
+            md_bg_color: 71/255, 104/255, 237/255, 1
+            radius: [15]
+            MDFloatLayout:
+                Image:
+                    source: "./assets/images/storage.png"
+                    pos_hint: {"center_x": .10, "center_y": .50}
+                    size_hint: .50, .50
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint: .65, .65
+                    pos_hint: {"center_x": .50, "center_y": .60}
+                    MDLabel:
+                        text: "Available Space"
+                        markup: True
+                        font_name: "DecaM"
+                        halign: "left"
+                        font_size: '18sp'
+                        color: rgba(255, 255, 255, 255)
+                    MDLabel:
+                        id: storage_title
+                        text: "(Finding...) GB of 15 GB Used"
+                        markup: True
+                        font_name: "DecaL"
+                        halign: "left"
+                        font_size: '16sp'
+                        color: rgba(255, 255, 255, 125)
+                MDProgressBar:
+                    id: storage_bar
+                    value: 0
+                    size_hint: .80, .05
+                    halign: "center"
+                    pos_hint: {"center_x": .50, "center_y": .15}
+                    color: app.theme_cls.accent_color
+
+        Button:
+            text: "See All Files"
+            font_name: "DecaM"
+            font_size: "20sp"
+            ripple: True
+            size_hint: .2, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            background_color: 0, 0, 0, 0
+            on_release: root.all_files()
+            canvas.before:
+                Color:
+                    rgb: root.app.theme_cls.accent_color
+                     #   71/255, 104/255, 237/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [23]
+

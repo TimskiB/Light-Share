@@ -1,0 +1,292 @@
+#: import ProfileButton libs.uix.components.profile_button.ProfileButton
+#: import HoverButton libs.uix.components.hover_button.HoverButton
+#:import utils kivy.utils
+
+#<AnimatedButton@MagicBehavior+Button>
+<AnimatedButton@Button+HoverBehavior>:
+    text: "Send"
+    font_name: "DecaM"
+    halign: "center"
+    font_size: "20sp"
+    size_hint: .3, .1
+    pos_hint: {"center_x": .5, "center_y": .10}
+    background_color: 1, 1, 1, 0
+    color: 1, 1, 1, 1
+    on_release:
+        self.button_animation(root)
+    canvas.before:
+        Color:
+            rgb: self.background #utils.get_color_from_hex("#4768ED")
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [8]
+
+<AsyncP@RelativeLayout>:
+    size: (45, 45)
+    size_hint: (None, None)
+    source: root.source
+    MDCard:
+        size: root.size
+        size_hint: (None, None)
+        radius: [30, ]
+        md_bg_color: utils.get_color_from_hex("#4768ED")
+        elevation: 0
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+    AsyncImage:
+        size: root.size[0] - 1, root.size[1]-1
+        radius: [35, ]
+        size_hint: (None, None)
+        source: root.source
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+<PeopleWithI>:
+    orientation: 'vertical'
+    size: (45, 60)
+    size_hint: (None, None)
+    spacing: 5
+    width: avatar.width
+#    on_release:
+#        root.parent
+    AsyncP:
+        id: avatar
+        source: root.source
+        pos_hint: {'center_x':.5}
+    MDLabel:
+        text: root.text
+        size: self.texture_size
+        theme_text_color: 'Custom'
+        size_hint_y: None
+        # size_hint_x: None
+        halign: 'center'
+        font_size: 10
+        shorten: True
+
+        color: rgba(71,92,119,255)
+        bold: True
+
+<ExampleWithIcon@MDBoxLayout>:
+    orientation: 'vertical'
+    size: (40, 65)
+    size_hint: (None, None)
+    spacing: 5
+    MDIconButton:
+        icon: 'plus'
+        theme_text_color: 'Custom'
+        pos_hint: {'center_x': .5}
+        text_color: [1, 1, 1, 1]
+        md_bg_color: utils.get_color_from_hex("#4768ED")
+        user_font_size: 18
+        size: (40, 40)
+        size_hint: (None, None)
+    MDLabel:
+        text: root.text
+        font_name: 'DecaL'
+        size: self.texture_size
+        theme_text_color: 'Custom'
+        size_hint_y: None
+        # size_hint_x: None
+        halign: 'center'
+        font_size: 7
+        color: rgba(71,92,119,255)
+        bold: True
+
+
+<S@FloatLayout>:
+    #size_hint_y: 1
+    size_hint_y: None
+    padding: 0, 0, 0, 0
+    adaptive_height: True
+    height: "600sp"
+    md_bg_color: rgba(246, 250, 255, 255)
+    MDLabel:
+        font_name: "DecaB"
+        font_size: "28sp"
+        text: 'Share'
+        pos_hint: {'center_x': .5, 'center_y': .9}
+        halign: "center"
+
+    MDLabel:
+        font_name: "DecaL"
+        font_size: "18sp"
+        text: 'Share with your friends'
+        pos_hint: {'center_x': .15, 'center_y': .82}
+        halign: "center"
+
+    MDBoxLayout:
+        pos_hint: {'center_x': .5, 'center_y': .67}
+        height: 110
+        padding: [20, 10, 20, 20 ]
+        size_hint_y: None
+        ScrollView:
+            do_scroll_x: True
+            do_scroll_y: False
+            bar_width: 0
+            MDBoxLayout:
+                id: people_share
+                orientation: 'horizontal'
+                adaptive_width: True
+                spacing: 15
+                padding: [10, 0, 0, 0]
+                ExampleWithIcon:
+                    text: "New Chat"
+    MDLabel:
+        font_name: "DecaL"
+        font_size: "18sp"
+        text: 'Device share'
+        pos_hint: {'center_x': .09, 'center_y': .48}
+        halign: "center"
+
+    MDBoxLayout:
+        pos_hint: {'center_x': .5, 'center_y': .40}
+        height: 110
+        padding: [20,10,20,0 ]
+        size_hint_y: None
+        ScrollView:
+            do_scroll_x: True
+            do_scroll_y: False
+            bar_width: 0
+            MDBoxLayout:
+                id: device_share
+                orientation: 'horizontal'
+                adaptive_width: True
+                spacing: 15
+                padding: [10, 0, 0, 0]
+                ExampleWithIcon:
+                    text: "New Device"
+    MDLabel:
+        font_name: "DecaL"
+        font_size: "14sp"
+        text: 'Save to Light Drive'
+        pos_hint: {"center_x": .1, "center_y": .10}
+        halign: "center"
+        text_color: 0,0,0,0.4
+    MDSwitch:
+        id: switch
+        pos_hint: {'center_x': .22, 'center_y': .1}
+
+    AnimatedButton:
+        id: button
+
+
+
+
+
+
+<LoadingTitle@AKLabelLoader>:
+    font_name: "DecaB"
+    font_size: "34sp"
+    pos_hint: {"center_x": .56, "center_y": .87}
+    color: rgba(71,92,119,255)
+
+<HomePage>:
+    #on_enter: root.get_user_data()
+    name: "home"
+    id: homme
+    MDFloatLayout:
+        md_bg_color: rgba(246, 250, 255, 255)
+        MDLabel:
+            text: "Hello,"
+            font_name: "DecaM"
+            pos_hint: {"center_x": .56, "center_y": .93}
+            font_size: "32sp"
+            color: rgba(188, 202, 228, 255)
+
+        MDLabel:
+            text: root.user_name
+            font_name: "DecaB"
+            font_size: "34sp"
+            pos_hint: {"center_x": .56, "center_y": .87}
+            color: rgba(71,92,119,255)
+
+        ProfileButton:
+            id: my_profile
+            source: "./assets/images/profile.png"
+            pos_hint: {"center_x": .83, "center_y": .91}
+            background_color: 1, 1, 1, 0
+            size_hint: .3, .3
+            on_release: root.go_profile()
+#                    root.manager.transition.direction = "left"
+#                    root.manager.current = "profile"
+
+        HoverButton:
+            text: "Send"
+            font_name: "DecaM"
+            font_size: "20sp"
+            size_hint: .5, .09
+            pos_hint: {"center_x": .5, "center_y": .7}
+            background_color: 1, 1, 1, 0
+            color: 1, 1, 1, 1
+            on_release: root.share()
+            canvas.before:
+                Color:
+                    rgb: self.background
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [8]
+        MDLabel:
+            text: "What to send?"
+            font_name: "DecaM"
+            font_size: "20sp"
+            halign: "center"
+            pos_hint: {"center_x": .5, "center_y": .6}
+            color: rgba(71,92,119,255)
+
+        MDBoxLayout:
+            pos_hint: {"center_x": .5, "center_y": .45}
+            rows: 1
+            cols: 3
+            size_hint: 1, .25
+            orientation: "horizontal"
+            padding: [25,]
+            spacing: 20
+            MDCard:
+                id: clipboard_card
+                size_hint: .26, 1
+                radius: [15,]
+                on_release: root.get_clipboard()
+                MDLabel:
+                    text: "Copy\nFrom\nClipboard"
+
+                    font_name: "DecaM"
+                    font_size: "20sp"
+                    halign: "center"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    color: rgba(71,92,119,255)
+
+            MDCard:
+                size_hint: .28, 1
+                radius: [15,]
+                MDLabel:
+                    text: "Upload\nImage/Video"
+                    font_name: "DecaM"
+                    font_size: "20sp"
+                    halign: "center"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    color: rgba(71,92,119,255)
+
+            MDCard:
+                id: files_card
+                size_hint: .26, 1
+                radius: [15,]
+                on_release: root.upload_files()
+                MDLabel:
+                    text: "Upload File"
+                    font_name: "DecaM"
+                    font_size: "20sp"
+                    halign: "center"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    color: rgba(71,92,119,255)
+
+        MDFloatingActionButton:
+            icon: "lan"
+            theme_icon_color:"Custom"
+            theme_text_color: "Custom"
+            on_release: root.go_lan()
+            pos_hint: {"center_x": .5, "center_y": .25}
+            #md_bg_color: utils.get_color_from_hex("#e9dff7")
+            icon_color: 0, 0, 0, 1
+            text_color: 0, 0, 0, 1
+

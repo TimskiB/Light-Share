@@ -1,0 +1,24 @@
+{
+    "splash": {
+        "import": "from libs.uix.baseclass.splash import SplashScreen",
+        "kv": "libs/uix/kv/splash.kv",
+        "object": "SplashScreen()"
+    },
+    "login": {
+        "import": "from libs.uix.baseclass.login_screen import LoginScreen",
+        "kv": "libs/uix/kv/login_screen.kv",
+        "object": "LoginScreen()"
+    },
+
+    "home": {
+        "import": "from libs.uix.baseclass.main_screen import HomeScreen",
+        "kv": "libs/uix/kv/main_screen.kv",
+        "object": "HomeScreen()"
+    },
+
+    "register": {
+    "import": "from libs.uix.baseclass.register_screen import RegisterScreen",
+    "kv": "libs/uix/kv/register_screen.kv",
+    "object": "RegisterScreen()"
+    }
+}

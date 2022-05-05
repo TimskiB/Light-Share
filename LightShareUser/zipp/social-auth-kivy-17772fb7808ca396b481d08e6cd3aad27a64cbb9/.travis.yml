@@ -1,0 +1,29 @@
+cache: pip
+
+matrix:
+  fast_finish: true
+  include:
+    - name: "Black"
+      env: RUN=black
+      language: python
+      python: 3.7
+      os: linux
+      dist: bionic
+
+install:
+- pip install pycodestyle
+script:
+- pycodestyle kivyauth/*.py
+
+after_failure:
+  - sleep 10;
+  - echo == End ==
+
+deploy:
+  skip_existing: true
+  provider: pypi
+  user: "__token__"
+  password: "pypi-AgEIcHlwaS5vcmcCJDRjNDhkMTM0LTJlYzAtNDQwZC1hOWU4LThhMjdhMmM4MDk4MgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgC9wx3oWQ4w-Pd-K7uxk-4iC-hhaFFUvgbz12qqNMBdo"
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true

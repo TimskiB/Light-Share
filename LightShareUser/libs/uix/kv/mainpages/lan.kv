@@ -1,0 +1,101 @@
+#: import HoverButton libs.uix.components.hover_button.HoverButton
+
+<AsyncPeople@RelativeLayout>:
+    size: (60, 60)
+    size_hint: (None, None)
+    source: root.source
+    MDCard:
+        size: root.size
+        size_hint: (None, None)
+        radius: [30, ]
+        md_bg_color: utils.get_color_from_hex("#4768ED")
+        elevation: 0
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+    AsyncImage:
+        size: root.size[0] - 5, root.size[1]-5
+        radius: [32, ]
+        size_hint: (None, None)
+        source: root.source
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+
+<LocalPeople>:
+    orientation: 'vertical'
+    size: (75, 100)
+    size_hint: (None, None)
+    spacing: 5
+    width: avatar.width
+    source: root.source
+#    on_release:
+#        root.parent
+    AsyncPeople:
+        id: avatar
+        source: root.source
+        pos_hint: {'center_x':.5}
+    MDLabel:
+        text: root.text
+        size: self.texture_size
+        theme_text_color: 'Custom'
+        size_hint_y: None
+        # size_hint_x: None
+        halign: 'center'
+        font_size: 16
+        shorten: True
+
+        color: rgba(71,92,119,255)
+        bold: True
+
+<LanScreen>:
+
+    name: "lan"
+    id: lan_screen
+    on_enter: root.lan_starter()
+    on_leave: root.lan_stopper()
+
+    MDFloatLayout:
+        md_bg_color: rgba(246, 250, 255, 255)
+        id: lan_net
+        MDLabel:
+#            id: files_title2
+            text: "Local Share"
+            markup: True
+            font_name: "DecaB"
+            halign: "center"
+            pos_hint: {"center_x": .50, "center_y": .9}
+            font_size: '38sp'
+            opacity: 1
+
+        MDIconButton:
+            icon: 'arrow-left'
+            user_font_size: '28sp'
+            pos_hint: {'center_x': 0.08, 'center_y': 0.9}
+            on_release: root.manager.current = 'home'
+
+        AsyncImage:
+            id: gif
+            source: "./assets/gifs/lan.gif"
+            size_hint: .45, .45
+            pos_hint: {"center_x": .50, "center_y": .5}
+            keep_ratio: False
+            anim_delay: -1
+            anim_loop: 1
+
+        Button:
+            text: "Send"
+            ripple: True
+            ripple_color: (0 / 255, 0.7 * 255 / 255, 0 / 255, 1)
+            font_name: "DecaM"
+            font_size: "20sp"
+            size_hint: .2, .09
+            pos_hint: {"center_x": .5, "center_y": .22}
+            background_color: 1, 1, 1, 0
+            color: 1, 1, 1, 1
+            on_release: root.send_local()
+            canvas.before:
+                Color:
+                    rgb: (71/255, 104/255, 237/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [8]

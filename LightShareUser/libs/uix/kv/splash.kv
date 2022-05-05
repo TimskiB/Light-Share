@@ -1,0 +1,67 @@
+# Another cool onboarding design: https://www.youtube.com/watch?v=fknyWGR9Bis&ab_channel=SBDeveloper
+
+<SplashScreen>
+    MDFloatLayout:
+        size_hint: 1,1
+        md_bg_color: 111/255, 59/255, 213/255, 1
+
+        Image:
+            source: './assets/images/splash.png'
+            size_hint: 0.5,0.5
+            pos_hint: {'center_x': .5, 'center_y': .7}
+
+        MDFloatLayout:
+            size_hint: 0.88, 0.38
+            md_bg_color: 1, 1, 1, 1
+            radius: [20,]
+            pos_hint: {'center_x': .5, 'center_y': .22}
+
+            MDFloatLayout:
+                size_hint: 0.9, 0.35
+                pos_hint: {'center_x': .5, 'center_y': .75}
+
+                Label:
+                    id: title_label
+                    markup: True
+                    text: 'Share and Store Your [color=#4768ED]Data[/color]'
+                    font_size: '25dp'
+                    font_name: 'DecaM'
+                    font_style: 'Bold'
+                    color: 17/255, 17/255, 17/255, 1
+                    valign: 'center'
+                    halign: 'center'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+            MDFloatLayout:
+                size_hint: 0.75, 0.2
+                pos_hint: {'center_x': .5, 'center_y': .45}
+
+                Label:
+                    id: sub_title_label
+                    markup: True
+                    text: 'Be part of your multi-device content,\nsafely send content across devices and friends.'
+                    font_size: '13dp'
+                    font_name: 'DecaM'
+                    font_style: 'Light'
+                    color: 17/255, 17/255, 17/255, 0.4
+                    valign: 'center'
+                    halign: 'center'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+            MDCard:
+                size_hint: 0.65, 0.22
+                md_bg_color: 71/255, 104/255, 237/255, 1
+                pos_hint: {'center_x': .5, 'center_y': .18}
+                radius: [25,]
+                ripple_behavior: True
+
+                on_press: root.login_screen()
+
+                Label:
+                    id: login_label
+                    text: 'Get Started'
+                    font_size: '18dp'
+                    font_name: 'DecaM'
+                    font_style: 'Bold'
+                    color: 1, 1, 1, 0.8
+                    pos_hint: {'center_x': .5, 'center_y': .5}

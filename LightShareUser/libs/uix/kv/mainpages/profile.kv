@@ -1,0 +1,202 @@
+
+<SettingsScreen>:
+
+    name: "profile"
+    AKSilverAppbar:
+        max_height: '250dp'
+        title:'Setting'
+        left_action_items: [["arrow-left", lambda x: root.parent.parent.parent.parent.nav_back()]]
+        right_action_items: [["magnify", lambda x: None]]
+        pin_top: True
+        hide_toolbar: True
+        radius: dp(20)
+        toolbar_bg: app.theme_cls.primary_color
+        AKSilverAppbarHeader:
+            MDScreen:
+                md_bg_color: app.theme_cls.primary_color
+                MDBoxLayout:
+                    adaptive_height:True
+                    orientation: "vertical"
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    spacing:"20dp"
+                    MDBoxLayout:
+                        size_hint:None,None
+                        size:'85dp','85dp'
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        AsyncImage:
+                            id: user_image
+                            source: './assets/images/profile.png'
+                            allow_stretch: True
+
+                            keep_ratio: False
+                    MDLabel:
+                        text:root.user_email
+                        halign:"center"
+                        color: 1, 1, 1, 1
+                        adaptive_height:True
+        AKSilverAppbarContent:
+            padding:'20dp'
+            spacing:'20dp'
+            id: content
+            size_hint_y: None
+            md_bg_color: rgba(246, 250, 255, 255)
+            height: self.minimum_height
+            orientation: "vertical"
+            MDLabel:
+                text:"COMMUNICATIONS"
+                adaptive_height:True
+            MDCard:
+                size_hint_y:None
+                height:"80dp"
+                orientation:"vertical"
+                radius:20
+                padding:"10dp"
+                TwoLineIconListItem:
+                    text: "Wireless and Network"
+                    secondary_text: "Server connection, Peer to Peer"
+                    IconLeftWidget:
+                        icon: "./assets/images/settings/wifi.png"
+#                TwoLineIconListItem:
+#                    text: "SMS"
+#                    secondary_text: "sms manager . Airplane mode"
+#                    divider:None
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/sim-card.png"
+            MDLabel:
+                text:"NOTIFICATIONS"
+                adaptive_height:True
+            MDCard:
+                size_hint_y:None
+                height:"80dp"
+                orientation:"vertical"
+                radius:20
+                padding:"10dp"
+                TwoLineIconListItem:
+                    text: "Notifications"
+                    secondary_text: "Status bar, Alerts"
+                    divider:None
+                    IconLeftWidget:
+                        icon: "./assets/images/settings/bell.png"
+            MDLabel:
+                text:"DEVICE"
+                adaptive_height:True
+            MDCard:
+                size_hint_y:None
+                height:"180dp"
+                orientation:"vertical"
+                radius:20
+                padding:"10dp"
+                TwoLineIconListItem:
+                    text: "Manage Devices"
+                    secondary_text: "Add, Configure"
+                    IconLeftWidget:
+                        icon: "./assets/images/settings/password.png"
+#                TwoLineIconListItem:
+#                    text: "Sounds and Vibration"
+#                    secondary_text: "Sound mode . Ringtone"
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/volume.png"
+#                TwoLineIconListItem:
+#                    text: "Calls"
+#                    secondary_text: "Calls . Contacts"
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/phone-call.png"
+
+                TwoLineIconListItem:
+                    text: "Storage"
+                    secondary_text: "Permission, Clean, Backup"
+                    IconLeftWidget:
+                        icon: "./assets/images/settings/sd-card.png"
+#                TwoLineIconListItem:
+#                    text: "Battery"
+#                    secondary_text: "Device Protection"
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/smartphone.png"
+#
+#                TwoLineIconListItem:
+#                    text: "Apps"
+#                    secondary_text: "Default apps . App setting"
+#                    divider:None
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/mobile-app.png"
+            MDLabel:
+                text:"PERSONAL"
+                adaptive_height:True
+            MDCard:
+                size_hint_y:None
+                #height:"310dp"
+                height: "80dp"
+                orientation:"vertical"
+                radius:20
+                padding:"10dp"
+                TwoLineAvatarIconListItem:
+                    text: "Dark Theme"
+                    secondary_text: "Switch between dark and light themes"
+
+                    IconLeftWidget:
+                        icon: "./assets/images/settings/dark-mode.png"
+                    IconRightWidget:
+                        icon: "checkbox-marked" if app.theme_cls.theme_style == "Dark" else "checkbox-blank-outline"
+                        on_release:app.theme_cls.theme_style = "Light" if app.theme_cls.theme_style == "Dark" else 'Dark'
+                        theme_text_color:'Custom'
+                        text_color:app.theme_cls.primary_color
+
+#                TwoLineIconListItem:
+#                    text: "Location"
+#                    secondary_text: "Locations permissions . Locations requests"
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/placeholder.png"
+#                TwoLineIconListItem:
+#                    text: "Languages"
+#                    secondary_text: "Input Languages . Keyboard Languages"
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/global.png"
+#
+#                TwoLineIconListItem:
+#                    text: "Date and Time"
+#                    secondary_text: "Time zone"
+#                    divider:None
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/schedule.png"
+            MDLabel:
+                text:"ACCOUNTS"
+                adaptive_height:True
+            MDCard:
+                size_hint_y:None
+                height:"80dp" # 240dp
+                orientation:"vertical"
+                radius:20
+                padding:"10dp"
+#                TwoLineIconListItem:
+#                    text: "FaceBook"
+#                    secondary_text: "Facebook accounts settings"
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/facebook.png"
+                TwoLineIconListItem:
+                    text: "Google"
+                    secondary_text: "Google Accounts Settings"
+                    IconLeftWidget:
+                        icon: "./assets/images/settings/google.png"
+#                TwoLineIconListItem:
+#                    text: "Whatsapp"
+#                    secondary_text: "Whatsapp accounts settings"
+#                    divider:None
+#                    IconLeftWidget:
+#                        icon: "./assets/images/settings/whatsapp.png"
+
+
+            MDLabel:
+                text:"ABOUT"
+                adaptive_height:True
+            MDCard:
+                size_hint_y:None
+                height:"80dp"
+                orientation:"vertical"
+                radius:20
+                padding:"10dp"
+                TwoLineIconListItem:
+                    text: "About"
+                    secondary_text: "Device Info, App Version, Author"
+                    divider:None
+                    IconLeftWidget:
+                        icon: "./assets/images/settings/info.png"

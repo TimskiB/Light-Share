@@ -1,0 +1,167 @@
+#:import utils kivy.utils
+
+<DeviceCard@MDCard>:
+    radius: [25,]
+    padding: [10,]
+    ripple_behavior: True
+    MDFloatLayout:
+#        orientation: 'vertical'
+#        cols: 1
+#        padding: dp(10)
+#        spacing: dp(10)
+        MDLabel:
+            font_name: 'DecaM'
+            pos_hint: {'center_x': .03, 'center_y': .8}
+            theme_text_color: 'Custom'
+            font_size: '20dp'
+            color: 17/255, 17/255, 17/255, 1
+            text: root.name
+            shorten: True
+        MDLabel:
+            font_name: 'DecaM'
+            theme_text_color: 'Custom'
+            pos_hint: {'center_x': .1, 'center_y': .5}
+            font_size: '18dp'
+            color: 17/255, 17/255, 17/255, 0.4
+            text: root.description
+            shorten: True
+        MDSeparator:
+            height: dp(1)
+            pos_hint: {'center_x': .1, 'center_y': .4}
+            color: 0, 0, 0, 0.2
+        MDBoxLayout:
+            pos_hint: {'center_x': .1, 'center_y': .2}
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(30)
+            cols: 2
+            spacing: dp(10)
+            MDIcon:
+                icon: 'code-tags'
+                theme_text_color: 'Custom'
+                text_color: self.theme_cls.primary_color
+            MDLabel:
+                font_name: 'DecaM'
+                theme_text_color: 'Custom'
+                font_size: '18dp'
+                color: self.theme_cls.primary_color
+                text: root.device_id
+                shorten: True
+
+<ElementCard@MDCard>:
+    md_bg_color: utils.get_color_from_hex('#4768ED')
+    padding:dp(15)
+    spacing:dp(15)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            color: 1, 1, 1, 1
+            text:root.text
+            font_size: '26dp'
+            font_name: 'DecaB'
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            font_size: '20dp'
+            font_name: 'DecaM'
+            color: 1, 1, 1, 1
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            color: 1, 1, 1, 1
+            font_size: '20dp'
+            font_name: 'DecaL'
+            text:root.items_count
+
+
+<DevicesScreen>:
+    name: "devices"
+    md_bg_color: rgba(246, 250, 255, 255)
+    on_enter: root.get_devices()
+    MDBoxLayout:
+        pos_hint: {'top': True}
+        size_hint_y: 0.86
+        orientation:'vertical'
+        md_bg_color: rgba(246, 250, 255, 255)
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"My Devices"
+                    font_size: '38sp'
+                    font_name: 'DecaB'
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Options"
+                        font_name: 'DecaM'
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+
+            MDIconButton:
+                icon:"alarm"
+        MDGridLayout:
+            size_hint_y:.6
+            cols:2
+            id: devices_grid
+            rows: 2
+            padding:[dp(25),dp(25),dp(25),dp(35)]
+            spacing:dp(15)
+
+#            ElementCard:
+#                image:"./assets/images/devices/device1.png"
+#                text:"Windows 11"
+#                subtext:"My Desktop PC."
+#                items_count:"3 Events"
+#            ElementCard:
+#                image:"./assets/images/devices/device1.png"
+#                text:"Windows 11"
+#                subtext:"My Work Laptop."
+#                items_count:"1 Events"
+
+#            ElementCard:
+#                image:"images/food.png"
+#                text:"Groceries"
+#                subtext:"Broccoli, Apple"
+#                items_count:"4 Items"
+#
+#            ElementCard:
+#                image:"images/map.png"
+#                text:"Location"
+#                subtext:"Lucy Mao going to Office"
+#                items_count:""
+#
+#            ElementCard:
+#                image:"images/festival.png"
+#                text:"Activity"
+#                items_count:""
+#                subtext:"Rose favorite your Post"
+#
+#            ElementCard:
+#                image:"images/todo.png"
+#                text:"To Do"
+#                subtext:"Homework, Design"
+#                items_count:"4 Items"
+#
+#            ElementCard:
+#                image:"images/setting.png"
+#                text:"Setting"
+#                subtext:""
+#                items_count:"4 Items"
+

@@ -1,0 +1,503 @@
+#: import NoTransition kivy.uix.screenmanager.NoTransition
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import HomePage libs.uix.baseclass.pages.home_page.HomePage
+#: import SettingsScreen libs.uix.baseclass.pages.settings_page.SettingsScreen
+#: import FilesScreen libs.uix.baseclass.pages.files_page.FilesScreen
+#: import GroupsScreen libs.uix.baseclass.pages.groups_page.GroupsScreen
+#: import DevicesScreen libs.uix.baseclass.pages.devices_page.DevicesScreen
+#: import ChatScreen libs.uix.baseclass.pages.chat.ChatScreen
+#: import LanScreen libs.uix.baseclass.pages.lan_page.LanScreen
+#: import AllFilesScreen libs.uix.baseclass.pages.allfiles_page.AllFilesScreen
+#:import Animation kivy.animation.Animation
+#:import effect kivy.uix.effectwidget.EffectWidget
+#:import HorizontalBlurEffect kivy.uix.effectwidget.HorizontalBlurEffect
+#:import VerticalBlurEffect kivy.uix.effectwidget.VerticalBlurEffect
+#:import utils kivy.utils
+<SendRequest@FloatLayout>
+    #orientation: "vertical"
+    padding: dp(20)
+
+    MDLabel:
+        text: "Light Drop"
+        pos_hint: {"center_x": .5, "center_y": .83}
+        halign: "center"
+        font_name: "DecaB"
+        valign: "center"
+        font_size: '24dp'
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 0.8
+
+    MDLabel:
+        id: info
+        pos_hint: {"center_x": .5, "center_y": .70}
+        text: "[NAME] Wants to send you a drop.\n(1 files and text)"
+        font_name: "DecaM"
+        font_size: '14dp'
+        halign: "center"
+        theme_text_color: "Secondary"
+        #font_style: "Caption"
+
+    #MDTextField:
+#    TextInput:
+#        multiline: True
+#        height: self.minimum_height
+#        hint_text: "Description"
+#        cursor_color: 96/255, 74/255, 215/255, 1
+#        size_hint: 1, None
+#        cursor_width: "2sp"
+#        foreground_color: 96/255, 74/255, 215/255, 1
+#        background_color: 0, 0, 0, 0
+#        padding: 15
+
+    MDBoxLayout:
+        size_hint: 1, None
+        orientation: "horizontal"
+        height: self.minimum_height
+        padding: dp(10)
+        spacing: dp(10)
+        pos_hint: {"center_x": .5, "center_y": .2}
+        MDFillRoundFlatButton:
+            id: accept
+            text: "Accept"
+            halign: "center"
+            font_name: "DecaM"
+            pos_hint: {"center_x": .5}
+            #on_release: root.create_device(self.device_name.text, self.description.text)
+            #pos_hint: {"center_x": .5}
+            md_bg_color: 0, 0.7, 0, 1
+
+        MDFillRoundFlatButton:
+            id: reject
+            text: "Reject"
+            halign: "center"
+            font_name: "DecaM"
+            pos_hint: {"center_x": .5}
+            #on_release: root.create_device(self.device_name.text, self.description.text)
+            #pos_hint: {"center_x": .5}
+            md_bg_color: 0.7, 0, 0, 1
+
+<Event@FloatLayout>:
+    #size_hint_y: 1
+    size_hint_y: None
+    padding: 0, 0, 0, 0
+    adaptive_height: True
+    height: "600sp"
+    md_bg_color: rgba(246, 250, 255, 255)
+    MDLabel:
+        font_name: "DecaB"
+        font_size: "28sp"
+        id: event_title
+        text: 'Received content from'
+        pos_hint: {'center_x': .5, 'center_y': .9}
+        halign: "center"
+
+    MDLabel:
+        font_name: "DecaL"
+        font_size: "18sp"
+        text: 'Text'
+        pos_hint: {'center_x': .5, 'center_y': .78}
+        halign: "center"
+    MDCard:
+        size_hint: 0.7, 0.3
+        pos_hint: {'center_x': .5, 'center_y': .58}
+        elevation: 10
+        md_bg_color: 1, 1, 1, 1
+        radius: 15
+
+        MDBoxLayout:
+            id: box_top
+            spacing: "5dp"
+            orientation: "vertical"
+            #adaptive_height: True
+            padding: [5, 5, 5, 5]
+
+            MDLabel:
+                id: clipboard_text
+                font_name: "DecaL"
+                font_size: "18sp"
+                padding_x: [5, 5]
+                text: 'No text was sent.'
+                padding_y:[20,20]
+                shorten: True
+                halign: "center"
+                multiline: True
+            MDSeparator:
+                size_hint_x: 0.5
+                halign: "center"
+                pos_hint: {'center_x': .5}
+
+#            MDBoxLayout:
+#                id: box_bottom
+#                adaptive_height: True
+#                halign: "center"
+#                padding: [10, 10, 10, 10]
+#                orientation: "vertical"
+            MDFillRoundFlatButton:
+                id: copy_button
+                text: "Copy To Clipboard"
+                font_size: "11sp"
+                halign: "center"
+                disabled: True
+                font_name: "DecaM"
+                valign: "middle"
+                pos_hint: {'center_x': .5}
+                md_bg_color: utils.get_color_from_hex("#4768ED")
+
+    MDLabel:
+        font_name: "DecaL"
+        font_size: "18sp"
+        text: 'Files'
+
+        pos_hint: {'center_x': .5, 'center_y': .38}
+        halign: "center"
+
+    MDCard:
+        size_hint: 0.7, 0.3
+        pos_hint: {'center_x': .5, 'center_y': .17}
+        elevation: 10
+        md_bg_color: 1, 1, 1, 1
+        radius: 15
+
+        MDBoxLayout:
+            id: box_top
+            spacing: "5dp"
+            orientation: "vertical"
+            #adaptive_height: True
+            padding: [5, 5, 5, 5]
+
+            MDLabel:
+                font_name: "DecaB"
+                id: file_text
+                font_size: "18sp"
+                padding_x: [5, 5]
+                text: 'No file was attached.'
+                padding_y:[20,20]
+                shorten: True
+                halign: "center"
+                multiline: True
+            MDSeparator:
+                size_hint_x: 0.5
+                halign: "center"
+                pos_hint: {'center_x': .5}
+
+#            MDBoxLayout:
+#                id: box_bottom
+#                adaptive_height: True
+#                halign: "center"
+#                padding: [10, 10, 10, 10]
+#                orientation: "vertical"
+            MDFillRoundFlatButton:
+                id: download_button
+                text: "Download File"
+                font_size: "11sp"
+                halign: "center"
+                font_name: "DecaM"
+                disabled: True
+                valign: "middle"
+                pos_hint: {'center_x': .5}
+                md_bg_color: utils.get_color_from_hex("#4768ED")
+
+#    MDCard:
+#        size_hint_x: 0.7
+#        pos_hint: {'center_x': .5, 'center_y': .35}
+#        elevation: 10
+#        md_bg_color: 1, 1, 1, 1
+#        radius: 15
+#        height: box_top.height + box_bottom.height
+#
+#        MDBoxLayout:
+#            id: box_top
+#            spacing: "20dp"
+#            adaptive_height: True
+#            padding: [10, 10, 10, 10]
+#            MDLabel:
+#                font_name: "DecaM"
+#                font_size: "18sp"
+#                text: 'File Name'
+#                shorten: True
+#                halign: "center"
+#                multiline: True
+#            MDSeparator:
+#
+#            MDBoxLayout:
+#                id: box_bottom
+#                adaptive_height: True
+#                padding: [10, 10, 10, 10]
+#
+#                MDFillRoundFlatButton:
+#                    id: submit
+#                    text: "Download File"
+#                    font_size: "16sp"
+#                    halign: "center"
+#                    font_name: "DecaM"
+#                    #on_release: root.create_device(self.device_name.text, self.description.text)
+#                    #pos_hint: {"center_x": .5}
+#                    md_bg_color: utils.get_color_from_hex("#4768ED")
+
+
+<EventNotification@BoxLayout+ButtonBehavior>
+    padding: dp(10)
+
+    MDLabel:
+        id: event_text
+        text: "1 New Notification"
+        theme_text_color: "Secondary"
+        halign: "left"
+
+    MDIconButton:
+        id: button
+        icon: "open-in-new"
+        halign: "right"
+        valign: "center"
+
+
+<DeviceDialog@FloatLayout>
+    #orientation: "vertical"
+    padding: dp(20)
+
+    MDLabel:
+        text: "New Device Registration"
+        pos_hint: {"center_x": .5, "center_y": .83}
+        halign: "center"
+        font_name: "DecaB"
+        valign: "center"
+        font_size: '24dp'
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 0.8
+
+    MDLabel:
+        pos_hint: {"center_x": .5, "center_y": .70}
+        text: "Hi. Let's connect your device to your account."
+        font_name: "DecaM"
+        font_size: '14dp'
+        halign: "center"
+        theme_text_color: "Secondary"
+        #font_style: "Caption"
+
+    #MDTextField:
+#    TextInput:
+#        multiline: True
+#        height: self.minimum_height
+#        hint_text: "Description"
+#        cursor_color: 96/255, 74/255, 215/255, 1
+#        size_hint: 1, None
+#        cursor_width: "2sp"
+#        foreground_color: 96/255, 74/255, 215/255, 1
+#        background_color: 0, 0, 0, 0
+#        padding: 15
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .50}
+        size_hint: .85, .16
+        halign: "center"
+        canvas:
+            Color:
+                rgb: (238/255, 238/255, 238/255, 1)
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [25]
+        TextInput:
+            hint_text: "Name"
+            id: device_name
+            size_hint: 1, None
+            pos_hint: {"center_x": .5, "center_y": .5}
+            height: self.minimum_height
+            multiline: True
+            cursor_color: 96/255, 74/255, 215/255, 1
+            cursor_width: "2sp"
+            foreground_color: 96/255, 74/255, 215/255, 1
+            background_color: 0, 0, 0, 0
+            padding: 15
+            font_name: "DecaM"
+            font_size: "16sp"
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .30}
+        size_hint: .85, .16
+        halign: "center"
+        canvas:
+            Color:
+                rgb: (238/255, 238/255, 238/255, 1)
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [25]
+        TextInput:
+            hint_text: "Description"
+            id: description
+            size_hint: 1, None
+            pos_hint: {"center_x": .5, "center_y": .5}
+            height: self.minimum_height
+            multiline: True
+            cursor_color: 96/255, 74/255, 215/255, 1
+            cursor_width: "2sp"
+            foreground_color: 96/255, 74/255, 215/255, 1
+            background_color: 0, 0, 0, 0
+            padding: 15
+            font_name: "DecaM"
+            font_size: "16sp"
+
+    MDFillRoundFlatButton:
+        id: submit
+        text: "Add Device"
+        halign: "center"
+        font_name: "DecaM"
+        pos_hint: {"center_x": .5, "center_y": .10}
+        #on_release: root.create_device(self.device_name.text, self.description.text)
+        #pos_hint: {"center_x": .5}
+        md_bg_color: 0, 0.7, 0, 1
+
+<On_active_button>
+    icon_color:
+        (71/255, 104/255, 237/255, 1) if not root.selected_item \
+        else (1, 1, 1, 1)
+    text_color:
+        (71/255, 104/255, 237/255, 1) if not root.selected_item \
+        else (1, 1, 1, 1)
+    button_bg_color:
+        (71/255, 104/255, 237/255, 1) if root.selected_item \
+        else (0, 1, 1, 0.1)
+    mode: "color_on_normal"
+    badge_disabled: True
+
+<MyWindow@AKFloatingWindow>
+    size_hint: None, None
+    size: dp(300), dp(300)
+    orientation: "vertical"
+
+<HomeScreen>
+    on_enter: root.check_device()
+    blur: 0
+    EffectWidget:
+        id: blurer
+        effects: (HorizontalBlurEffect(size=root.blur), VerticalBlurEffect(size=root.blur), )
+        MDFloatLayout:
+            md_bg_color: 1, 1, 1, 1
+            id: topbar
+            ScreenManager:
+                id: scr
+                transition: FadeTransition()
+                HomePage:
+                    name: 'home'
+                SettingsScreen:
+                    name: 'profile'
+                FilesScreen:
+                    name: 'files'
+                GroupsScreen:
+                    name: 'groups'
+                DevicesScreen:
+                    name: 'devices'
+                ChatScreen:
+                    name: 'chat'
+                LanScreen:
+                    name: 'lan'
+                AllFilesScreen:
+                    name: 'allfiles'
+
+            AKFloatingWindowLayout:
+                MyWindow:
+                    id: loading_window
+                    window_title: "Upload in progress..."
+                    top_widget: topbar
+                    MDLabel:
+                        text: "Your package is being sent. Please wait."
+                        halign: "center"
+                        font_name: "DecaM"
+                        font_size: "20sp"
+                        pos_hint: {"center_x": .5, "center_y": .8}
+
+                    AKCircularProgress:
+                        id: progress_percent
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        size_hint: None, None
+                        size: dp(100), dp(100)
+                        percent_type: "percent"
+                        start_deg: 180
+                        end_deg: 540
+
+    #            <Home>:
+    #                name: "home"
+    #            <Files>:
+    #                name: "files"
+    #            <Settings>:
+    #                name: "settings"
+    #             <Groups>:
+    #                name: "groups"
+    #            <Devices>:
+    #                name: "devices"
+    #            MDScreen:
+    #                name: "home"
+    #                MDLabel:
+    #                    text: "Home"
+    #                    halign: "center"
+    #                    pos_hint: {"center_x": .5, "center_y": .5}
+    #            MDScreen:
+    #                name: "files"
+    #                MDLabel:
+    #                    text: "Files"
+    #                    halign: "center"
+    #                    pos_hint: {"center_x": .5, "center_y": .5}
+    #
+    #            MDScreen:
+    #                name: "groups"
+    #                MDLabel:
+    #                    text: "Groups"
+    #                    halign: "center"
+    #                    pos_hint: {"center_x": .5, "center_y": .5}
+    #            MDScreen:
+    #                name: "devices"
+    #                MDLabel:
+    #                    text: "Devices"
+    #                    halign: "center"
+    #                    pos_hint: {"center_x": .5, "center_y": .5}
+
+            NavBar:
+                id: navbar
+                size_hint: .60, .09
+                pos_hint: {"center_x": .5, "center_y": .1}
+                elevation: 15
+                md_bg_color: 1,1,1,1
+                radius: [25]
+                width: self.width
+
+                On_active_button:
+                    text: "Home"
+                    icon: "home-circle-outline"
+                    selected_item: True
+                    pos_hint: {"center_x": .13, "center_y": .5}
+                    button_width: navbar.width / 4
+                    on_release:
+                        scr.current = "home"
+                        root.on_touch(self)
+
+                On_active_button:
+                    text: "Files"
+                    icon: "folder-outline"
+
+
+                    pos_hint: {"center_x": .37, "center_y": .5}
+                    button_width: navbar.width / 4
+                    on_release:
+                        scr.current = "files"
+                        root.on_touch(self)
+
+                On_active_button:
+                    text: "Groups"
+                    icon: "account-group"
+
+                    pos_hint: {"center_x": .62, "center_y": .5}
+                    button_width: navbar.width / 4
+                    on_release:
+                        scr.current = "groups"
+                        root.on_touch(self)
+
+                On_active_button:
+                    text: "Devices"
+                    icon: "cellphone-link"
+
+                    pos_hint: {"center_x": .87, "center_y": .5}
+                    button_width: navbar.width / 4
+                    on_release:
+                        scr.current = "devices"
+                        root.on_touch(self)
+
+

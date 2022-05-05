@@ -1,0 +1,276 @@
+<ChatListItem>:
+    ripple_behavior: True
+    md_bg_color: 0, 0, 0, 0
+    elevation: 0
+    size_hint_y: None
+    padding: [10, 0, 10, 0]
+    spacing: 10
+    height: chatAvatar.height + 10
+    on_press: app.create_chat(root.profile)
+    Avatar:
+        id: chatAvatar
+        source: root.friend_avatar
+        pos_hint: {"center_y": .5}
+        radius: [30, ]
+    MDBoxLayout:
+        # md_bg_color: 1, 0, 1, 1
+        orientation: "vertical"
+        padding: [0, 0, 0, 10]
+        spacing: 2
+        Label:
+            id: chatUsername
+            text: root.friend_name
+            theme_text_color: 'Custom'
+            size: self.texture_size
+            size_hint_y: None
+            size_hint_x: None
+            font_size: 15
+            color: app.theme_cls.opposite_bg_normal
+            bold: True
+        MDLabel:
+            id: lastMessage
+            text: root.mssg
+            height: self.texture_size[1]
+            theme_text_color: 'Custom'
+            size_hint_y: None
+            # size_hint_x: None
+            bold: True
+            font_size: 13
+            color: [.5, .5, .5, 1] if root.isRead != 'new' else app.theme_cls.primary_color
+            shorten: True
+            markup: True
+            shorten_from: 'right'
+    BoxLayout:
+        # height: chatCount.height + time.height
+        # size_hint_y: None
+        orientation: 'vertical'
+        width: time.width
+        size_hint_x: None
+        pos_hint: {'center_y': .5}
+        spacing: 2
+        padding: [0, 15, 0, 5]
+        Label:
+            id: time
+            text: root.timestamp
+            size: self.texture_size
+            size_hint_y: None
+            size_hint_x: None
+            font_size: 9
+            color: app.theme_cls.opposite_bg_normal
+
+        MDIcon:
+            #: set icons {'read': 'checkbox-multiple-marked-circle','delivered': 'checkbox-multiple-marked-circle-outline' ,'new': 'circle'}
+            id: chatCount
+            theme_text_color: 'Custom'
+            icon: icons[root.isRead] if root.isRead in icons.keys() else ''
+            size_hint: None, None
+            font_size: 12
+            size: 20, 20
+            pos_hint: {"center_x": .5, 'center_y': .5}
+            text_color: app.theme_cls.primary_color
+
+<GroupListItem>:
+    ripple_behavior: True
+    md_bg_color: 0, 0, 0, 0
+    elevation: 0
+    size_hint_y: None
+    padding: [10, 0, 10, 0]
+    spacing: 10
+    height: groupAvatar.height + 10
+    Avatar:
+        id: groupAvatar
+        source: root.group_avatar
+        pos_hint: {"center_y": .5}
+        radius: [30, ]
+    MDBoxLayout:
+        # md_bg_color: 1, 0, 1, 1
+        orientation: "vertical"
+        padding: [0, 0, 0, 10]
+        Label:
+            id: groupUsername
+            text: root.group_name
+            theme_text_color: 'Custom'
+            size: self.texture_size
+            # size_hint_y: None
+            size_hint_x: None
+            font_size: 15
+            color: app.theme_cls.opposite_bg_normal
+            bold: True
+        MDLabel:
+            id: lastMessage
+            text: root.friend_mssg
+            height: self.texture_size[1]
+            theme_text_color: 'Custom'
+            size_hint_y: None
+            # size_hint_x: None
+            bold: True
+            font_size: 13
+            color: [.5, .5, .5, 1] if root.isRead != 'new' else app.theme_cls.primary_color
+            shorten: True
+            markup: True
+            shorten_from: 'right'
+
+<Avatar@RelativeLayout>:
+    size: (45, 45)
+    size_hint: (None, None)
+    source: root.source
+    MDCard:
+        size: root.size
+        size_hint: (None, None)
+        radius: [30, ]
+        md_bg_color: app.theme_cls.accent_color
+        elevation: 0
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+    FitImage:
+        size: root.size[0] - 3, root.size[1]-3
+        radius: [30, ]
+        size_hint: (None, None)
+        source: root.source
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+<StoryWithImage>:
+    orientation: 'vertical'
+    size: (60, 80)
+    size_hint: (None, None)
+    spacing: 5
+    width: avatar.width
+    Avatar:
+        id: avatar
+        source: root.source
+        pos_hint: {'center_x':.5}
+    MDLabel:
+        text: root.text
+        size: self.texture_size
+        theme_text_color: 'Custom'
+        size_hint_y: None
+        # size_hint_x: None
+        halign: 'center'
+        font_size: 9
+        color: [1, 1, 1, 1]
+        bold: True
+
+<StoryWithIcon@MDBoxLayout>:
+    orientation: 'vertical'
+    size: (45, 80)
+    size_hint: (None, None)
+    spacing: 5
+    MDIconButton:
+        icon: 'camera-outline'
+        theme_text_color: 'Custom'
+        pos_hint: {'center_x': .5}
+        text_color: [1, 1, 1, 1]
+        md_bg_color: app.theme_cls.accent_color
+        user_font_size: 18
+        size: (40, 40)
+        size_hint: (None, None)
+    MDLabel:
+        text: 'Your Story'
+        size: self.texture_size
+        theme_text_color: 'Custom'
+        size_hint_y: None
+        # size_hint_x: None
+        halign: 'center'
+        font_size: 9
+        color: [1, 1, 1, 1]
+        bold: True
+
+<NavBBar@MDBoxLayout>:
+    orientation: 'vertical'
+    size_hint_y: None
+    padding: [0, 0, 0, 10]
+    one: [1, 1, 1, .5]
+    two: [1, 1, 1, .5]
+    three: [1, 1, 1, .5]
+    four: [1, 1, 1, .5]
+    MDCard:
+        id: navBar
+        radius: [18, ]
+        md_bg_color: app.theme_cls.primary_color
+        padding: [10, 0, 10, 0]
+        size_hint_y: None
+        size_hint_x: None
+        width: 220
+        height: 40
+        pos_hint: {'center_x': .5}
+
+        NavIcon:
+            text_color: root.one
+            on_press: app.change_screen('message')
+            icon: 'message-minus-outline'
+        NavIcon:
+            text_color: root.two
+            on_press: app.change_screen('group')
+            icon: 'account-group-outline'
+        NavIcon:
+            text_color: root.three
+            on_press: app.change_screen('call')
+            icon: 'phone-in-talk-outline'
+        # NavIcon:
+        #     text_color: root.four
+        #     on_press: app.change_screen('contact')
+        #     icon: 'account-plus-outline'
+
+
+
+<NavIcon@MDIconButton>:
+    pos_hint: {'center_y': .5}
+    theme_text_color: 'Custom'
+    size_hint_x: .1
+    user_font_size: 20
+    size: 45, 45
+
+<GroupsScreen>:
+    on_enter: root.load_groups()
+    name: "groups"
+    MDBoxLayout:
+        cols: 1
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        MDToolbar:
+            id: logoToolBar
+            height: 50
+            title: "My Groups"
+            right_action_items: [['dots-vertical', lambda x: app.show_theme_picker()]]
+            margin: 0
+
+        ScrollView:
+            do_scroll_y: True
+            effect_cls: 'ScrollEffect'
+            bar_width: 0
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: 'vertical'
+                md_bg_color: app.theme_cls.primary_color
+                spacing: 20
+                MDBoxLayout:
+                    height: 60
+                    size_hint_y: None
+                    ScrollView:
+                        do_scroll_x: True
+                        do_scroll_y: False
+                        bar_width: 0
+                        MDBoxLayout:
+                            id: story_layout
+                            orientation: 'horizontal'
+                            adaptive_width: True
+                            spacing: 10
+                            padding: [10, 0, 0, 0]
+                            StoryWithIcon:
+
+                MDBoxLayout:
+                    cols: 1
+                    orientation: 'vertical'
+                    md_bg_color: app.theme_cls.bg_normal
+                    size_hint_y: None
+                    adaptive_height: True
+                    radius: [20, 20, 0, 0]
+                    padding: [0, 0, 0, 40]
+                    MDList:
+                        id: chatlist
+                        spacing: 10
+#    MDBoxLayout:
+#        size_hint_y: None
+#        md_bg_color: 0, 0, 0, 0
+#        NavBBar:
+#            one: [1, 1, 1, 1]

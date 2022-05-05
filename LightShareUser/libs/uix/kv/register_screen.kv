@@ -1,0 +1,187 @@
+#: import RectangularRippleImage libs.uix.baseclass.register_screen.RectangularRippleImage
+#: import RectangularRippleButton libs.uix.baseclass.register_screen.RectangularRippleButton
+<NNotification@BoxLayout>
+    padding: dp(10)
+
+    MDLabel:
+        text: "Passwords do not match."
+        theme_text_color: "Secondary"
+        halign: "left"
+
+    MDIconButton:
+        id: button
+        icon: "close"
+        halign: "right"
+        valign: "center"
+
+<EErrorDialog@BoxLayout>:
+    orientation: "vertical"
+    spacing: dp(10)
+    padding: dp(20)
+
+    MDLabel:
+        text: "Sign Up Failed"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: .9, 0, 0, 1
+
+    MDLabel:
+        text: "This email is already registered. Please try again."
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: .9, 0, 0, 1
+        font_style: "Caption"
+
+    MDFillRoundFlatButton:
+        id: button
+        text: "Dismiss"
+        md_bg_color: .9, 0, 0, 1
+        pos_hint: {"center_x": .5}
+
+<RegisterScreen>
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+#        Image:
+#            source: "./assets/images/login.png"
+#            pos_hint: {"y": .5}
+#            size_hint: 1, .5
+        MDLabel:
+            text: "Sign Up"
+            pos_hint: {"center_x": .5, "center_y": .8}
+            halign: "center"
+            font_name: "DecaM"
+            font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: 60/255, 43/255, 117/255, 1
+        MDFloatLayout:
+            size_hint: .85, .08
+            pos_hint: {"center_x": .5, "center_y": .6}
+            canvas:
+                Color:
+                    rgb: (238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                hint_text: "Email"
+                id: email
+                size_hint: 1, None
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: self.minimum_height
+                multiline: False
+                cursor_color: 96/255, 74/255, 215/255, 1
+                cursor_width: "2sp"
+                foreground_color: 96/255, 74/255, 215/255, 1
+                background_color: 0, 0, 0, 0
+                padding: 15
+                font_name: "DecaM"
+                font_size: "18sp"
+
+        MDFloatLayout:
+            size_hint: .85, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            canvas:
+                Color:
+                    rgb: (238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                hint_text: "Username"
+                size_hint: 1, None
+                id: username
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: self.minimum_height
+                multiline: False
+                cursor_color: 96/255, 74/255, 215/255, 1
+                cursor_width: "2sp"
+                foreground_color: 96/255, 74/255, 215/255, 1
+                background_color: 0, 0, 0, 0
+                padding: 15
+                font_name: "DecaM"
+                font_size: "18sp"
+
+        MDFloatLayout:
+            size_hint: .85, .08
+            pos_hint: {"center_x": .5, "center_y": .4}
+            canvas:
+                Color:
+                    rgb: (238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                hint_text: "Password"
+                password: True
+                id: password
+                size_hint: 1, None
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: self.minimum_height
+                multiline: False
+                cursor_color: 96/255, 74/255, 215/255, 1
+                cursor_width: "2sp"
+                foreground_color: 96/255, 74/255, 215/255, 1
+                background_color: 0, 0, 0, 0
+                padding: 15
+                font_name: "DecaM"
+                font_size: "18sp"
+        MDFloatLayout:
+            size_hint: .85, .08
+            pos_hint: {"center_x": .5, "center_y": .3}
+            canvas:
+                Color:
+                    rgb: (238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                hint_text: "Confirm Password"
+                password: True
+                id: confirm_password
+                size_hint: 1, None
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: self.minimum_height
+                multiline: False
+                cursor_color: 96/255, 74/255, 215/255, 1
+                cursor_width: "2sp"
+                foreground_color: 96/255, 74/255, 215/255, 1
+                background_color: 0, 0, 0, 0
+                padding: 15
+                font_name: "DecaM"
+                font_size: "18sp"
+        MDTextButton:
+            text: "OR"
+            font_name: "DecaM"
+            theme_text_color: "Custom"
+            text_color: 246/255, 135/255, 177/255, 1
+            pos_hint: {"center_x": .5, "center_y": .22}
+
+        Button:
+            text: "SIGN UP"
+            font_name: "DecaM"
+            font_size: "20sp"
+            ripple: True
+            size_hint: .5, .08
+            pos_hint: {"center_x": .5, "center_y": .12}
+            background_color: 0, 0, 0, 0
+            on_release: root.sign_up()
+            canvas.before:
+                Color:
+                    rgb: 71/255, 104/255, 237/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [23]
+
+        MDTextButton:
+            text: "Already have an account? Login here"
+            font_name: "DecaL"
+            theme_text_color: "Custom"
+            on_release: root.manager.transition.direction='right' ;root.manager.current = "login"
+            ripple: True
+            color: 17/255, 17/255, 17/255, 0.4
+            pos_hint: {"center_x": .5, "center_y": .03}
